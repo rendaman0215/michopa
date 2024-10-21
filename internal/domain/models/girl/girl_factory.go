@@ -5,12 +5,11 @@ import (
 
 	"github.com/google/uuid"
 	commonvalobject "github.com/rendaman0215/michopa/internal/domain/models/common_val_object"
-	"github.com/rendaman0215/michopa/internal/interface_adapater/dto"
 	"golang.org/x/sync/errgroup"
 )
 
 // コンストラクタ
-func NewGirl(ctx context.Context, girlData dto.GirlDTO) (*Girl, error) {
+func NewGirl(ctx context.Context, girlData GirlDTO) (*Girl, error) {
 	var (
 		id     *commonvalobject.ID
 		name   *commonvalobject.Fullname

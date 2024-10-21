@@ -17,7 +17,6 @@ func main() {
 	// Init Log
 	logger.InitLogger()
 
-	// Create a new memory repository
 	app := fx.New(
 		fx.Provide(
 			memory.NewMemCache,

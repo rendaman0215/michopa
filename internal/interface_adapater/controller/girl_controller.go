@@ -6,7 +6,6 @@ import (
 	girlv1 "buf.build/gen/go/rendaman/personal-schema/protocolbuffers/go/girl/v1"
 	"connectrpc.com/connect"
 	"github.com/rendaman0215/michopa/internal/domain/models/girl"
-	"github.com/rendaman0215/michopa/internal/interface_adapater/dto"
 	service_interface "github.com/rendaman0215/michopa/internal/service/interface"
 )
 
@@ -17,7 +16,8 @@ func NewGirlController() service_interface.GirlController {
 }
 
 func (gc *GirlController) RegisterGirl(ctx context.Context, req *connect.Request[girlv1.GirlServiceRegisterRequest]) (*girl.Girl, error) {
-	newGirl, err := girl.NewGirl(ctx, dto.GirlDTO{
+	// RequestのGirlをGirlDTOに変換
+	girlDto := girl.GirlDTO{
 		ID:        req.Msg.Girl.Id,
 		Firstname: req.Msg.Girl.Name.Firstname,
 		Lastname:  req.Msg.Girl.Name.Lastname,
@@ -25,7 +25,9 @@ func (gc *GirlController) RegisterGirl(ctx context.Context, req *connect.Request
 		Cup:       req.Msg.Girl.Cup,
 		Hip:       int(req.Msg.Girl.Hip),
 		Height:    int(req.Msg.Girl.Height),
-	})
+	}
+
+	newGirl, err := girl.NewGirl(ctx, girlDto)
 	if err != nil {
 		return nil, err
 	}
