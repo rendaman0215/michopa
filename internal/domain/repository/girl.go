@@ -13,4 +13,7 @@ type GirlRepository interface {
 
 	// 女の子を登録する
 	Register(ctx context.Context, girl *girl.Girl) error
+
+	// 女の子を属性で検索する
+	FindByAttributes(firstname string, lastname string) ([]*girl.Girl, error)
 }

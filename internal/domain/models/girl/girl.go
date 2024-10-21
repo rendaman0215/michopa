@@ -14,20 +14,6 @@ type Girl struct {
 	height Height
 }
 
-type GirlDTO struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	Age    int    `json:"age"`
-	Cup    string `json:"cup"`
-	Hip    int    `json:"hip"`
-	Height int    `json:"height"`
-}
-
-// コンストラクタ
-func NewGirl(girlData GirlDTO) *Girl {
-	return &Girl{}
-}
-
 // ゲッター
 func (girl *Girl) Id() *commonvalobject.ID {
 	return &girl.id
