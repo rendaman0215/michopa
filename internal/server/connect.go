@@ -28,6 +28,7 @@ func NewConnectServer(girlRepo repository.GirlRepository, girlPresen service_int
 
 func (cs *ConnectServer) NewServer() *http.ServeMux {
 	logInterceptor := middleware.NewLoggerInterceptor()
+
 	interceptors := connect.WithInterceptors(logInterceptor)
 
 	mux := http.NewServeMux()
